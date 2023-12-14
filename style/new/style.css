@@ -1,0 +1,72 @@
+.banner {
+  width: 100%;
+  /* Ukuran gambar sesuai lebar kontainer */
+  height: auto;
+  margin-left: -30px;
+}
+
+@media (min-width: 768px) {
+  .banner {
+    width: auto;
+    /* Kembalikan ke ukuran aslinya setelah lebar layar mencapai 768px */
+    /* margin-left: 0 ; */
+  }
+}
+
+.section-heading {
+    font-size: 2em;
+    color: #333;
+  }
+  
+  .feature-1 {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  }
+  
+  .feature-1:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .wrap-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120px; /* Atur tinggi ikon */
+    width: 120px; /* Atur lebar ikon */
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 50%;
+    margin-bottom: 20px; /* Atur jarak antara ikon dan teks */
+  }
+  
+  .wrap-icon i {
+    font-size: 36px;
+  }
+  
+  h3 {
+    margin-top: 10px; /* Atur jarak antara judul dan ikon */
+    font-size: 1.5em;
+    color: #333;
+  }
+  
+  p {
+    color: #666;
+  }
+
+  @media (max-width: 768px) {
+    .wrap-icon {
+      height: 60px; /* Ukuran yang lebih kecil untuk layar kecil */
+      width: 60px; /* Ukuran yang lebih kecil untuk layar kecil */
+      margin: -50px; /* Menambahkan margin atas dan bawah */
+    }
+  
+    .wrap-icon i {
+      font-size: 18px; /* Ukuran yang lebih kecil untuk ikon pada layar kecil */
+    }
+  }
+  

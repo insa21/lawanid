@@ -1,0 +1,76 @@
+Tentu, berikut adalah revisi tanpa tanda backtick ():
+
+### Admin
+- **Atribut:**
+  - nisn: String
+  - password: String
+  - nama: String
+- **Perilaku:**
+  - +login(username: String, password: String): boolean
+  - +logout(): void
+  - +manageUsers(): void
+
+### Artikel
+- **Atribut:**
+  - id_artikel: int
+  - judul: String
+  - foto: String
+  - isi: String
+  - tanggal: String
+- **Perilaku:**
+  - +createArticle(title: String, content: String, photo: String): void
+  - +deleteArticle(articleId: int): void
+  - +viewArticle(articleId: int): String
+
+### Laporan
+- **Atribut:**
+  - id_laporan: int
+  - judul: String
+  - foto: String
+  - lokasi_kejadian: String
+  - tanggal_kejadian: String
+  - deskripsi: String
+  - bukti_kejadian: String
+  - nisn: String
+  - id_status: int
+  - created_at: DateTime
+- **Perilaku:**
+  - +createReport(title: String, location: String, description: String, evidence: String, studentId: String): void
+  - +deleteReport(reportId: int): void
+  - +viewReport(reportId: int): String
+  - +approveReport(reportId: int): void
+  - +rejectReport(reportId: int): void
+
+### Siswa
+- **Atribut:**
+  - nisn: String
+  - password: String
+  - nama: String
+  - kelas: String
+  - jurusan: String
+  - jenis_kelamin: String
+  - no_hp: String
+  - alamat: String
+- **Perilaku:**
+  - +login(username: String, password: String): boolean
+  - +logout(): void
+  - +viewProfile(): String
+  - +updateProfile(password: String, phone: String, address: String): void
+
+### Status_Laporan
+- **Atribut:**
+  - id_status: int
+  - status: String
+  - feedback: String
+- **Perilaku:**
+  - +getStatusDescription(): String
+  - +provideFeedback(feedback: String): void
+
+### Database Connection
+- **Perilaku:**
+  - +connect(): void
+  - +disconnect(): void
+  - +executeQuery(query: String): ResultSet
+  - +storeData(data: Object): void
+
+Harapannya ini membuatnya lebih jelas dan sesuai dengan standar UML. Jika Anda memiliki pertanyaan lebih lanjut atau perubahan yang ingin Anda buat, beri tahu saya!

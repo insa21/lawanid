@@ -1,0 +1,52 @@
+CREATE TABLE `admin` (
+  `nisn` char(19) NOT NULL,
+  `password` varchar(15) NOT NULL,
+  `nama` varchar(35) NOT NULL,
+  PRIMARY KEY (`nisn`)
+);
+
+CREATE TABLE `artikel` (
+  `id_artikel` int(30) NOT NULL AUTO_INCREMENT,
+  `judul` varchar(50) NOT NULL,
+  `foto` varchar(550) NOT NULL,
+  `isi` varchar(1000) NOT NULL,
+  `tanggal` varchar(30) NOT NULL,
+  PRIMARY KEY (`id_artikel`)
+);
+
+CREATE TABLE `laporan` (
+  `id_laporan` int(11) NOT NULL AUTO_INCREMENT,
+  `judul` varchar(100) NOT NULL,
+  `foto` varchar(30) NOT NULL,
+  `lokasi_kejadian` varchar(200) NOT NULL,
+  `tanggal_kejadian` varchar(50) NOT NULL,
+  `deskripsi` varchar(550) NOT NULL,
+  `bukti_kejadian` varchar(200) NOT NULL,
+  `nisn` char(11) NOT NULL,
+  `id_status` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id_laporan`),
+  KEY `nisn` (`nisn`),
+  KEY `id_status` (`id_status`),
+  CONSTRAINT `laporan_ibfk_2` FOREIGN KEY (`nisn`) REFERENCES `siswa` (`nisn`),
+  CONSTRAINT `laporan_ibfk_3` FOREIGN KEY (`id_status`) REFERENCES `status_laporan` (`id_status`)
+);
+
+CREATE TABLE `siswa` (
+  `nisn` char(16) NOT NULL,
+  `password` varchar(15) NOT NULL,
+  `nama` varchar(35) NOT NULL,
+  `kelas` varchar(35) NOT NULL,
+  `jurusan` varchar(35) NOT NULL,
+  `jenis_kelamin` varchar(35) NOT NULL,
+  `no_hp` varchar(35) NOT NULL,
+  `alamat` varchar(35) NOT NULL,
+  PRIMARY KEY (`nisn`)
+);
+
+CREATE TABLE `status_laporan` (
+  `id_status` int(11) NOT NULL AUTO_INCREMENT,
+  `status` varchar(30) NOT NULL DEFAULT 'terkirim',
+  `feedback` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_status`)
+);
