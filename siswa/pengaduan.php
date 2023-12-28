@@ -167,12 +167,12 @@ include '../admin/conn.php';
                           </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <!-- <div class="row mb-3">
                           <label for="kartu_pelajar" class="col-sm-2 col-form-label">Kartu Pelajar</label>
                           <div class="col-sm-10">
                             <input type="file" class="form-control" name="kartu_pelajar" id="kartu_pelajar" accept="image/*" required />
                           </div>
-                        </div>
+                        </div> -->
 
                         <div class="row mb-3">
                           <label for="bukti_kejadian" class="col-sm-2 col-form-label">Bukti Kejadian</label>
@@ -215,8 +215,8 @@ include '../admin/conn.php';
     </section>
 
   </main><!-- End #main -->
-
   <?php
+
   include '../admin/conn.php';
 
   if (isset($_POST['submit'])) {
@@ -242,14 +242,14 @@ include '../admin/conn.php';
       }
     }
 
-    if (uploadFile($_FILES['kartu_pelajar'], "../assets/kartupelajar/")) {
-      if (uploadFile($_FILES['bukti_kejadian'], "../assets/fotobukti/")) {
-        $conn->query("INSERT INTO status_laporan (status, feedback) VALUES ('terkirim', ' ')");
-        $status_id = $conn->insert_id;
-        $conn->query("INSERT INTO laporan (judul, foto, lokasi_kejadian, tanggal_kejadian, deskripsi, bukti_kejadian, nisn, id_status) 
-                          VALUES ('$judul', '{$_FILES['kartu_pelajar']['name']}', '$lokasi_kejadian', '$tanggal_kejadian', '$deskripsi', '{$_FILES['bukti_kejadian']['name']}', '$nisn', '$status_id')");
+    if (uploadFile($_FILES['bukti_kejadian'], "../assets/fotobukti/")) {
+      $conn->query("INSERT INTO status_laporan (status, feedback) VALUES ('terkirim', ' ')");
+      $status_id = $conn->insert_id;
+      $foto_kejadian = $_FILES['bukti_kejadian']['name']; // Corrected variable name
+      $conn->query("INSERT INTO laporan (judul, lokasi_kejadian, tanggal_kejadian, deskripsi, bukti_kejadian, nisn, id_status) 
+                          VALUES ('$judul', '$lokasi_kejadian', '$tanggal_kejadian', '$deskripsi', '$foto_kejadian', '$nisn', '$status_id')");
 
-        echo "<script>
+      echo "<script>
                     Swal.fire({
                         title: 'Laporan Terkirim!',
                         html: '<p>Terima kasih atas laporannya. Kami akan segera menindaklanjuti.</p>',
@@ -260,27 +260,17 @@ include '../admin/conn.php';
                         window.location.href = 'dashboardsiswa.php';
                     });
                 </script>";
-      } else {
-        echo "<script>
+    } else {
+      echo "<script>
                     Swal.fire({
                         title: 'Ukuran File Bukti Kejadian Terlalu Besar atau Format Tidak Diperbolehkan',
                         icon: 'error',
                         showConfirmButton: true
                     });
                 </script>";
-      }
-    } else {
-      echo "<script>
-                Swal.fire({
-                    title: 'Ukuran File Kartu Pelajar Terlalu Besar atau Format Tidak Diperbolehkan',
-                    icon: 'error',
-                    showConfirmButton: true
-                });
-            </script>";
     }
   }
   ?>
-
 
 
   <!-- ======= Footer ======= -->

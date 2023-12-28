@@ -28,7 +28,7 @@ if ($_SESSION['status_login'] != true) {
   <link href="../template/NiceAdmin/assets/vendor/quill/quill.snow.css" rel="stylesheet">
   <link href="../template/NiceAdmin/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="../template/NiceAdmin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="../template/NiceAdmin/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <!-- <link href="../template/NiceAdmin/assets/vendor/simple-datatables/style.css" rel="stylesheet"> -->
 
   <link href="../template/NiceAdmin/assets/css/style.css" rel="stylesheet">
 </head>
@@ -195,7 +195,7 @@ if ($_SESSION['status_login'] != true) {
   <script src="../template/NiceAdmin/assets/vendor/chart.js/chart.umd.js"></script>
   <script src="../template/NiceAdmin/assets/vendor/echarts/echarts.min.js"></script>
   <script src="../template/NiceAdmin/assets/vendor/quill/quill.min.js"></script>
-  <script src="../template/NiceAdmin/assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <!-- <script src="../template/NiceAdmin/assets/vendor/simple-datatables/simple-datatables.js"></script> -->
   <script src="../template/NiceAdmin/assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="../template/NiceAdmin/assets/vendor/php-email-form/validate.js"></script>
   <script src="../template/NiceAdmin/assets/js/main.js"></script>

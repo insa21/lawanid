@@ -16,7 +16,7 @@ while ($perlaporan = $terkirim->fetch_assoc()) { ?>
             <div class="card">
               <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                 <a data-bs-toggle="modal" data-bs-target="#profileImageModal">
-                  <img src="../assets/kartupelajar/<?= $perlaporan['foto']; ?>" alt="Profile" style="cursor: pointer;" onclick="openProfileImageModal('../assets/kartupelajar/<?= $perlaporan['foto']; ?>')">
+                  <img src="../assets/fotobukti/<?= $perlaporan['bukti_kejadian']; ?>" alt="" srcset="" style="cursor: pointer; max-width: 150px;" onclick="openProfileImageModal('../assets/fotobukti/<?= $perlaporan['bukti_kejadian']; ?>')">
                 </a>
                 <h2><?= $perlaporan['nama']; ?></h2>
               </div>
@@ -33,9 +33,9 @@ while ($perlaporan = $terkirim->fetch_assoc()) { ?>
                   <li class="nav-item">
                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit-<?= $perlaporan['id_laporan'] ?>">Informasi</button>
                   </li>
-                  <li class="nav-item">
+                  <!-- <li class="nav-item">
                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings-<?= $perlaporan['id_laporan'] ?>">Bukti</button>
-                  </li>
+                  </li> -->
                   <li class="nav-item">
                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password-<?= $perlaporan['id_laporan'] ?>">Feedback</button>
                   </li>

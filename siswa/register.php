@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../template/login/assets/css/login.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body>
@@ -35,15 +36,19 @@
                   <label for="username" class="sr-only">NISN</label>
                   <input type="text" name="username" id="username" class="form-control" placeholder="Masukan NISN" />
                 </div>
+                <div class="form-group">
+                  <label for="nama" class="sr-only">Nama Lengkap</label>
+                  <input type="text" name="nama" id="nama" class="form-control" placeholder="Masukan Nama Lengkap" s />
+                </div>
                 <div class="form-group mb-4">
                   <label for="password" class="sr-only">Password</label>
                   <input type="password" name="password" id="password" class="form-control" placeholder="Masukan Password" />
                 </div>
-                <input name="submit" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Login" />
+                <input name="submit" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Daftar" />
               </form>
               <p class="login-card-footer-text">
-                <a href="../admin/loginadmin.php" class="text-reset">Login sebagai admin</a>
-                <a href="../siswa/register.php" class="text-reset" style="padding-left: 20px;">Belum punya akun</a>
+                <a href="../siswa/loginsiswa.php" class="text-reset">Sudah punya akun</a>
+                <!-- <a href="../admin/loginadmin.php" class="text-reset" style="padding-left: 20px;">Belum punya akun</a> -->
               </p>
               <nav class="login-card-footer-nav">
               </nav>
@@ -56,21 +61,46 @@
   </main>
 
   <!-- PHP CODE -->
+
   <?php
   include '../admin/conn.php';
-  if (isset($_POST['submit'])) {
-    $username = $_POST['username'];
-    $pass = $_POST['password'];
-    $ambil = $conn->query("SELECT * FROM siswa where '$username'=nisn AND '$pass'=password ");
-    $akunyangcocok = $ambil->num_rows;
-    if ($akunyangcocok == 1) {
-      $akun = $ambil->fetch_assoc();
-      $_SESSION['nisn'] = $akun;
 
-      echo "<script>location='dashboardsiswa.php';</script>";
+  if (isset($_POST['submit'])) {
+    $nisn = $_POST['username'];
+    $name = $_POST['nama'];
+    // $kelas = $_POST['kelas'];
+    // $jurusan = $_POST['jurusan'];
+    // $jenis_kelamin = $_POST['jenisKelamin'];
+    // $no_hp = $_POST['no_hp'];
+    // $alamat = $_POST['alamat'];
+    $password = $_POST['password'];
+
+    $query = "INSERT INTO siswa (nisn, nama, password) VALUES ('$nisn', '$name','$password')";
+
+    if (mysqli_query($conn, $query)) {
+      // Data insertion successful
+      echo "<script>
+                Swal.fire({
+                  title: 'Success!',
+                  text: 'Data siswa berhasil ditambahkan',
+                  icon: 'success',
+                  confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location='loginsiswa.php';
+                    }
+                });
+              </script>";
     } else {
-      echo "<script>alert('Username atau Password Salah!');</script>";
-      echo "<script>location='loginsiswa.php';</script>";
+      // Data insertion failed
+      echo "<script>
+                Swal.fire({
+                  title: 'Error!',
+                  text: 'Gagal menambahkan data siswa',
+                  icon: 'error',
+                  confirmButtonText: 'OK'
+                });
+              </script>";
     }
   }
   ?>
