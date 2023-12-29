@@ -279,9 +279,7 @@ include '../admin/conn.php';
                   </form>
                   <!-- End Profile Edit Form -->
                 </div>
-
                 <div class="tab-pane fade pt-3" id="profile-settings">
-
 
                 </div>
 
