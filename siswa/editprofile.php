@@ -133,7 +133,7 @@ include '../admin/conn.php';
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="../template/NiceAdmin/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+              <img src="../assets/kartupelajar/<?php echo $_SESSION['nisn']['foto']; ?>" alt="Profile">
               <h2><?php echo $_SESSION['nisn']['nama']; ?></h2>
               <h3>Siswa</h3>
               <div class="social-links mt-2">

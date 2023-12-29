@@ -30,8 +30,14 @@
                 <img src="..\assets\img\terapan\logo-large.png" alt="logo" class="logo" />
                 <h2 class="ml-3"><b>Lawan.id</b></h2>
               </div>
-              <p class="login-card-description">Login sebagai siswa</p>
-              <form action="" method="post">
+              <p class="login-card-description">Daftar akun siswa</p>
+              <form action="" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                  <label for="foto">Upload Kartu Pelajar</label>
+                  <input type="file" class="form-control-file" name="foto" id="foto" accept="image/*">
+                  <small class="form-text text-muted">Masukan Kartu Pelajar dalam format gambar (jpg, jpeg, png).</small>
+                </div>
+
                 <div class="form-group">
                   <label for="username" class="sr-only">NISN</label>
                   <input type="text" name="username" id="username" class="form-control" placeholder="Masukan NISN" />
@@ -59,48 +65,61 @@
     </div>
     </div>
   </main>
-
   <!-- PHP CODE -->
-
   <?php
   include '../admin/conn.php';
 
   if (isset($_POST['submit'])) {
     $nisn = $_POST['username'];
     $name = $_POST['nama'];
-    // $kelas = $_POST['kelas'];
-    // $jurusan = $_POST['jurusan'];
-    // $jenis_kelamin = $_POST['jenisKelamin'];
-    // $no_hp = $_POST['no_hp'];
-    // $alamat = $_POST['alamat'];
     $password = $_POST['password'];
+    $allowed_extensions = array('image/png', 'image/jpg', 'image/jpeg');
 
-    $query = "INSERT INTO siswa (nisn, nama, password) VALUES ('$nisn', '$name','$password')";
+    function uploadFile($file, $destination)
+    {
+      $name = $file['name'];
+      $ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
+      $size = $file['size'];
+      $tmp_name = $file['tmp_name'];
 
-    if (mysqli_query($conn, $query)) {
-      // Data insertion successful
-      echo "<script>
-                Swal.fire({
-                  title: 'Success!',
-                  text: 'Data siswa berhasil ditambahkan',
-                  icon: 'success',
-                  confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        location='loginsiswa.php';
-                    }
-                });
-              </script>";
-    } else {
-      // Data insertion failed
-      echo "<script>
-                Swal.fire({
-                  title: 'Error!',
-                  text: 'Gagal menambahkan data siswa',
-                  icon: 'error',
-                  confirmButtonText: 'OK'
-                });
-              </script>";
+      if (in_array($file['type'], $GLOBALS['allowed_extensions']) && $size < 3544070) {
+        move_uploaded_file($tmp_name, $destination . $name);
+        return $name; // Return the filename for database insertion
+      } else {
+        return false;
+      }
+    }
+
+    $foto = uploadFile($_FILES['foto'], "../assets/kartupelajar/");
+
+    if ($foto) {
+      $query = "INSERT INTO siswa (nisn, foto, nama, password) VALUES ('$nisn', '$foto','$name','$password')";
+
+      if (mysqli_query($conn, $query)) {
+        // Data insertion successful
+        echo "<script>
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Data siswa berhasil ditambahkan',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location='loginsiswa.php';
+                            }
+                        });
+                    </script>";
+      } else {
+        // Data insertion failed
+        echo "<script>
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Gagal menambahkan data siswa',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    </script>";
+      }
     }
   }
   ?>

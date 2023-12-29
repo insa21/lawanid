@@ -186,9 +186,9 @@ if (isset($_GET['hapus'])) {
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">
-                <button type="button" class="text-white btn btn-info bi bi-person-plus-fill">
+                <!-- <button type="button" class="text-white btn btn-info bi bi-person-plus-fill">
                   <a class="text-white small" href="tambahdata.php">Tambah Data Siswa</a>
-                </button>
+                </button> -->
               </h5>
 
               <!-- Table with stripped rows -->
@@ -198,6 +198,7 @@ if (isset($_GET['hapus'])) {
                     <tr>
                       <th>No</th>
                       <th>NISN</th>
+                      <th>Foto</th> <!-- New column header for the image -->
                       <!-- <th>Password</th> -->
                       <th>Nama</th>
                       <th>Kelas</th>
@@ -219,6 +220,17 @@ if (isset($_GET['hapus'])) {
                       <tr>
                         <td><?= $no++; ?>.</td>
                         <td><?= $data['nisn']; ?></td>
+                        <td>
+                          <?php
+                          // Check if the image path exists
+                          if (!empty($data['foto'])) {
+                            $imagePath = "../assets/kartupelajar/" . $data['foto'];
+                            echo '<img src="' . $imagePath . '" alt="Foto Siswa" style="max-width: 50px; max-height: 50px;">';
+                          } else {
+                            echo 'No Image';
+                          }
+                          ?>
+                        </td>
                         <!-- <td><?= str_repeat('*', strlen($data['password'])); ?></td> -->
                         <td><?= $data['nama']; ?></td>
                         <td><?= $data['kelas']; ?></td>
@@ -242,7 +254,6 @@ if (isset($_GET['hapus'])) {
                 </table>
               </div>
               <!-- End Table with stripped rows -->
-
             </div>
           </div>
         </div>

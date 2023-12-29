@@ -201,14 +201,19 @@ function getLatestNISN($conn)
                       <h5 class="card-title"></h5>
 
                       <!-- General Form Elements -->
-                      <form action="" method="post">
-                        <div class="row mb-3">
+                      <form action="" method="post" enctype="multipart/form-data">
+                        <div class=" row mb-3">
                           <label for="username" class="col-sm-2 col-form-label">NISN</label>
                           <div class="col-sm-10">
                             <input type="text" class="form-control" name="username" id="username" value="" required />
                           </div>
                         </div>
-
+                        <div class="row mb-3">
+                          <label for="foto" class="col-sm-2 col-form-label">Foto</label>
+                          <div class="col-sm-10">
+                            <input type="file" class="form-control" name="foto" id="foto" accept="image/*" required />
+                          </div>
+                        </div>
                         <div class="row mb-3">
                           <label for="nama" class="col-sm-2 col-form-label">Nama Lengkap</label>
                           <div class="col-sm-10">
@@ -300,7 +305,6 @@ function getLatestNISN($conn)
     </section>
 
   </main><!-- End #main -->
-
   <?php
   include '../admin/conn.php';
 
@@ -314,7 +318,29 @@ function getLatestNISN($conn)
     $alamat = $_POST['alamat'];
     $password = $_POST['password'];
 
-    $query = "INSERT INTO siswa (nisn, nama, kelas, jurusan, jenis_kelamin, no_hp, alamat, password) VALUES ('$nisn', '$name', '$kelas', '$jurusan', '$jenis_kelamin', '$no_hp', '$alamat', '$password')";
+    // File upload handling
+    $allowed_extensions = array('image/png', 'image/jpg', 'image/jpeg');
+
+    function uploadFile($file, $destination)
+    {
+      $name = $file['name'];
+      $ext = strtolower(pathinfo($name, PATHINFO_EXTENSION));
+      $size = $file['size'];
+      $tmp_name = $file['tmp_name'];
+
+      if (in_array($file['type'], $GLOBALS['allowed_extensions']) && $size < 3544070) {
+        $newFileName = uniqid() . '_' . $name; // Generate a unique filename
+        move_uploaded_file($tmp_name, $destination . $newFileName);
+        return $newFileName; // Return the filename for database insertion
+      } else {
+        return false;
+      }
+    }
+
+    $foto = uploadFile($_FILES['foto'], "../assets/kartupelajar/");
+
+    // Insert data into the database
+    $query = "INSERT INTO siswa (nisn, foto, nama, kelas, jurusan, jenis_kelamin, no_hp, alamat, password) VALUES ('$nisn', '$foto','$name', '$kelas', '$jurusan', '$jenis_kelamin', '$no_hp', '$alamat', '$password')";
 
     if (mysqli_query($conn, $query)) {
       // Data insertion successful
@@ -343,6 +369,7 @@ function getLatestNISN($conn)
     }
   }
   ?>
+
 
   <!-- Footer -->
   <footer id="footer" class="footer">
