@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 14 Des 2023 pada 15.28
+-- Waktu pembuatan: 02 Jan 2024 pada 00.19
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -87,15 +87,10 @@ CREATE TABLE `laporan` (
 --
 
 INSERT INTO `laporan` (`id_laporan`, `judul`, `foto`, `lokasi_kejadian`, `tanggal_kejadian`, `deskripsi`, `bukti_kejadian`, `nisn`, `id_status`, `created_at`) VALUES
-(11, 'kekerasan seksual', '2018-07-17_220151 (1).jpg', 'sekolah', '2023-12-14', 'bebas', '20190916_103728-768x616.jpg', '0001', 11, '2023-12-13 17:56:53'),
-(12, 'bullying', '2018-07-17_220151 (1).jpg', 'belakang rumah', '2023-12-15', 'bebas', 'cid.jpg', '0001', 12, '2023-12-13 18:01:01'),
-(13, 'test', '2018-07-17_220151 (1).jpg', 'WC dong', '2023-12-23', 'sa', '20190916_103728-768x616.jpg', '0001', 13, '2023-12-13 18:01:30'),
-(14, 'kekerasan seksual', '2018-07-17_220151 (1).jpg', 'WC dong', '2023-12-22', 'oke', 'Gambar3.png', '0001', 14, '2023-12-13 18:04:04'),
-(15, 'kekerasan seksual', '2018-07-17_220151 (1).jpg', 'belakang rumah', '2023-12-14', 'wkwk', '20190916_103728-768x616.jpg', '0001', 15, '2023-12-13 18:10:12'),
-(16, 'kekerasan seksual', '2018-07-17_220151 (1).jpg', 'ss', '2023-12-22', 'asa', 'cid.jpg', '0001', 16, '2023-12-13 18:13:11'),
-(17, 'bebas', 'yogi.jpg', 'belakang rumah', '2023-12-15', 'bebas', '20190916_103728-768x616.jpg', '0001', 17, '2023-12-14 07:16:12'),
-(18, 'bebas', '2018-07-17_220151 (1).jpg', 'belakang rumah', '2023-12-13', 'wokeee', '20190916_103728-768x616.jpg', 'AAA002', 18, '2023-12-14 08:12:58'),
-(19, 'gausah', '2018-07-17_220151 (1).jpg', 'belakang rumah', '2023-12-08', 'bebass', 'yogi.jpg', 'AAAA01', 19, '2023-12-14 13:21:49');
+(25, 'kekerasan seksual', '', 'belakang rumah', '2023-12-20', 'test', '20190916_103728-768x616.jpg', '0001', 25, '2023-12-29 08:31:47'),
+(26, 'bullying', '', 'sekolah', '2023-12-22', 'pada zaman dahulu kala disebuqah rumah', 'cid.jpg', '0001', 26, '2023-12-29 08:32:56'),
+(27, 'bullying', '', 'sekolah', '2024-01-11', 'kenapaaa ?', '20190916_103728-768x616.jpg', 'A123', 27, '2024-01-01 22:37:04'),
+(28, 'bulliying', '', 'Taman', '2024-01-01', 'bebasss', '20190916_103728-768x616.jpg', 'AB234', 28, '2024-01-01 22:52:23');
 
 -- --------------------------------------------------------
 
@@ -105,6 +100,7 @@ INSERT INTO `laporan` (`id_laporan`, `judul`, `foto`, `lokasi_kejadian`, `tangga
 
 CREATE TABLE `siswa` (
   `nisn` char(16) NOT NULL,
+  `foto` varchar(200) NOT NULL,
   `password` varchar(15) NOT NULL,
   `nama` varchar(35) NOT NULL,
   `kelas` varchar(35) NOT NULL,
@@ -118,9 +114,10 @@ CREATE TABLE `siswa` (
 -- Dumping data untuk tabel `siswa`
 --
 
-INSERT INTO `siswa` (`nisn`, `password`, `nama`, `kelas`, `jurusan`, `jenis_kelamin`, `no_hp`, `alamat`) VALUES
-('0001', 'siswa', 'sikamari', 'XI', 'TJKT 2', 'laki-laki', '089655029147', 'tasikmalaya'),
-('AAAA01', 'siswa', 'indra saepudin', 'XII', 'Tata Busana 1', 'laki-laki', '+6289655029147', 'wkwk');
+INSERT INTO `siswa` (`nisn`, `foto`, `password`, `nama`, `kelas`, `jurusan`, `jenis_kelamin`, `no_hp`, `alamat`) VALUES
+('0001', 'yogi.jpg', 'siswa', 'indra saepudin xxx', '', '', '', '', ''),
+('A123', '2018-07-17_220151 (1).jpg', 'siswa', 'udinnnnnn', '12', 'Teknik informatika', 'laki-laki', '+6289655029147', 'wkwk'),
+('AB234', 'yogi.jpg', 'fitroh123', 'Fitrohh', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -147,7 +144,16 @@ INSERT INTO `status_laporan` (`id_status`, `status`, `feedback`) VALUES
 (16, 'approve', 'asasas'),
 (17, 'terkirim', ' '),
 (18, 'terkirim', ' '),
-(19, 'terkirim', ' ');
+(19, 'terkirim', ' '),
+(20, 'terkirim', ' '),
+(21, 'terkirim', ' '),
+(22, 'terkirim', ' '),
+(23, 'approve', 'okeeee'),
+(24, 'unapprove', 'gagal'),
+(25, 'approve', 'disetujui'),
+(26, 'terkirim', ' '),
+(27, 'terkirim', ' '),
+(28, 'terkirim', ' ');
 
 --
 -- Indexes for dumped tables
@@ -199,13 +205,13 @@ ALTER TABLE `artikel`
 -- AUTO_INCREMENT untuk tabel `laporan`
 --
 ALTER TABLE `laporan`
-  MODIFY `id_laporan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_laporan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT untuk tabel `status_laporan`
 --
 ALTER TABLE `status_laporan`
-  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
