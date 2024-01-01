@@ -74,7 +74,7 @@ $nomorBaris = 1;
                 <td>{$data['lokasi_kejadian']}</td>
                 <td>{$data['tanggal_kejadian']}</td>
                 <td>
-                    <a href='#' class='enlarge-img-link' data-bs-toggle='modal' data-bs-target='#enlargeImageModal' data-img-url='../assets/fotobukti/{$data['bukti_kejadian']}'>
+                    <a href='#' class=eg'enlarge-img-link' data-bs-toggle='modal' data-bs-target='#enlargeImageModal' data-img-url='../assets/fotobukti/{$data['bukti_kejadian']}'>
                         <img src='../assets/fotobukti/{$data['bukti_kejadian']}' alt='Bukti' width='50' height='50'>
                     </a>
                 </td>

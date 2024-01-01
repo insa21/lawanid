@@ -21,7 +21,7 @@
       <div class="card login-card">
         <div class="row no-gutters">
           <div class="col-md-5">
-            <img src="..\assets\img\new\1.png" style="background-color: #004064" alt="login" class="login-card-img" />
+            <img src="..\assets\img\new\logo.png" style="background-color: #004064" alt="login" class="login-card-img" />
           </div>
           <div class="col-md-7">
             <div class="card-body">

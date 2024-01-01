@@ -284,9 +284,7 @@ include '../admin/conn.php';
                 </div>
 
                 <div class="tab-pane fade pt-3" id="profile-change-password">
-
                 </div>
-
               </div><!-- End Bordered Tabs -->
 
             </div>

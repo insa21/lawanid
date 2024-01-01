@@ -21,10 +21,10 @@
     <div class="container">
       <div class="card login-card">
         <div class="row no-gutters">
-          <div class="col-md-5">
-            <img src="..\assets\img\new\1.png" style="background-color: grey" alt="login" class="login-card-img" />
-          </div>
           <div class="col-md-7">
+            <img src="..\assets\img\new\logo.png" style="background-color: grey;" alt="login" class="login-card-img" />
+          </div>
+          <div class="col-md-5">
             <div class="card-body">
               <div class="brand-wrapper d-flex align-items-center">
                 <img src="..\assets\img\terapan\logo-large.png" alt="logo" class="logo" />
